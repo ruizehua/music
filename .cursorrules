@@ -1,0 +1,336 @@
+# Cursor IDE 项目规则
+
+> 本文件为 Cursor IDE 提供项目级规则，引用并扩展 `AGENTS.md` 中的规范。
+
+---
+
+## 引用主规范
+
+Cursor 在处理本项目时，**必须首先读取并遵循** `AGENTS.md`：
+
+- [AGENTS.md](AGENTS.md) - AI 行为规范完整内容
+- 包含：项目概述、代码风格规范、提交规范、禁止事项、技术栈说明
+
+---
+
+## Cursor IDE 配置
+
+### 1. 代码格式化配置
+
+#### Java（后端）
+- **格式化工具**：Google Java Format
+- **缩进**：4 空格（不使用 Tab）
+- **行宽**：100 字符
+- **导入排序**：Google Import Order
+
+#### Kotlin（Android）
+- **格式化工具**：Kotlin 格式化插件
+- **缩进**：4 空格
+- **行宽**：120 字符
+- **链式调用**：换行时链前导
+
+### 2. Lint 配置
+
+#### 后端 Lint
+- **Checkstyle**：使用 Google Java Style
+- **SpotBugs**：中等严格度
+- **PMD**：忽略某些规则（如过于严格的命名）
+
+#### Android Lint
+- **Android Lint**：警告级别
+- **KtLint**：建议使用
+- **Detekt**：推荐使用
+
+### 3. 自动导入配置
+
+#### Java
+```java
+// 导入顺序
+// 1. Java 标准库
+// 2. 第三方库
+// 3. 项目内部导入
+// 4. 空白行分隔
+// 5. 按字母排序
+```
+
+#### Kotlin
+```kotlin
+// 导入顺序
+// 1. kotlin.*
+// 2. javax.* / java.*
+// 3. 第三方库
+// 4. 项目内部导入
+// 5. 按字母排序
+```
+
+---
+
+## 项目特定设置
+
+### 1. 编辑器设置
+
+#### 文件头注释
+创建新文件时，自动添加以下头部：
+
+**Java 文件**：
+```java
+/*
+ * Copyright (c) 2026 Music Software. All rights reserved.
+ */
+
+package com.music.xxx;
+
+import org.springframework.stereotype.Service;
+```
+
+**Kotlin 文件**：
+```kotlin
+/*
+ * Copyright (c) 2026 Music Software. All rights reserved.
+ */
+
+package com.music.player
+```
+
+#### 文件模板
+- 控制层：`MusicController.java`
+- 服务层：`MusicService.java`
+- 数据层：`MusicRepository.java`
+- Activity：`MainActivity.kt`
+- ViewModel：`MainViewModel.kt`
+- Fragment：`MusicFragment.kt`
+
+### 2. 智能提示配置
+
+#### 优先级设置
+1. 项目内部类和方法优先
+2. Spring Boot 框架类其次
+3. 标准库类最后
+
+#### 自动完成
+- 启用智能感知
+- 显示方法参数提示
+- 显示文档快捷键：`Ctrl + Q`（Windows）
+
+### 3. 重构支持
+
+#### 安全重构
+Cursor 应优先使用以下重构：
+- **Extract Method**：提取重复代码
+- **Rename**：重命名变量/方法
+- **Inline**：内联临时变量
+- **Move Class**：移动类到其他包
+
+#### 危险重构
+以下重构需要用户确认：
+- **Delete Class**：删除整个类
+- **Change Signature**：修改方法签名
+- **Move to Another Module**：跨模块移动
+
+---
+
+## AI 助手的 Cursor 特定行为
+
+### 1. 代码生成
+
+#### 生成代码时的检查
+- 检查是否有相同或相似的代码
+- 避免重复实现已有功能
+- 使用项目现有的工具类
+
+#### 生成代码后的处理
+- 自动格式化代码
+- 自动整理导入语句
+- 添加必要的 `@Override` 或 `override` 注解
+
+### 2. 调试支持
+
+#### 断点建议
+- 在关键业务逻辑处建议添加断点
+- 提醒设置条件断点（如特定 ID 的数据）
+- 建议监控变量值
+
+#### 异常处理建议
+- 提供具体的异常类型建议
+- 建议添加有意义的错误消息
+- 提供日志记录建议
+
+### 3. 代码审查
+
+#### 自动审查触发
+Cursor 应在以下情况提供审查建议：
+- 提交代码前
+- 创建 Pull Request 前
+- 长时间未审查的代码
+
+#### 审查重点
+1. **安全性**：硬编码、SQL 注入、XSS
+2. **性能**：数据库查询效率、内存使用
+3. **可维护性**：代码复杂度、重复代码
+4. **最佳实践**：框架使用、设计模式
+
+---
+
+## 快捷键映射（推荐）
+
+### Windows 快捷键
+
+#### 常用操作
+| 操作 | 快捷键 |
+|------|--------|
+| 格式化代码 | `Ctrl + Alt + L` |
+| 优化导入 | `Ctrl + Alt + O` |
+| 重命名 | `Shift + F6` |
+| 查找 | `Ctrl + F` |
+| 替换 | `Ctrl + R` |
+| 跳转到定义 | `Ctrl + 鼠标左键` |
+| 查找用法 | `Alt + F7` |
+
+#### AI 助手操作
+| 操作 | 快捷键 |
+|------|--------|
+| 激活 AI 助手 | `Ctrl + L` |
+| 询问 AI | `Ctrl + I` |
+| 解释代码 | `Ctrl + Shift + E` |
+| 生成代码 | `Ctrl + Enter` |
+
+### 调试快捷键
+| 操作 | 快捷键 |
+|------|--------|
+| 设置断点 | `Ctrl + F8` |
+| 开始调试 | `Shift + F9` |
+| 单步跳过 | `F8` |
+| 单步进入 | `F7` |
+| 停止调试 | `Shift + F2` |
+
+---
+
+## 特定场景规则
+
+### 1. Spring Boot 开发
+
+#### Controller 编写
+- 使用 `@RestController` 而非 `@Controller`
+- 使用 `@RequestMapping` 定义路由前缀
+- 返回 `ResponseEntity<T>`
+- 使用 `@Valid` 进行参数校验
+- 使用 `@ExceptionHandler` 处理异常
+
+#### Service 编写
+- 接口与实现分离
+- 使用 `@Transactional` 管理事务
+- 使用构造器注入依赖
+- 业务逻辑添加日志
+
+#### Repository 编写
+- 使用 Spring Data JPA 派生查询
+- 复杂查询使用 `@Query` 注解
+- 使用 Pageable 进行分页
+
+### 2. Android 开发
+
+#### Activity/Fragment
+- 使用 ViewBinding 或 Compose
+- 避免在 `onCreate` 中做耗时操作
+- 使用 `lifecycleScope` 管理协程
+- 处理生命周期相关逻辑
+
+#### ViewModel
+- 使用 `viewModelScope` 运行协程
+- 使用 `StateFlow` 管理 UI 状态
+- 不持有 View 的引用
+- 在 `onCleared` 中清理资源
+
+#### 协程使用
+- 使用 `Dispatchers.IO` 进行网络/数据库操作
+- 使用 `Dispatchers.Main` 更新 UI
+- 正确处理异常
+- 取消不再需要的协程
+
+---
+
+## 项目检查清单
+
+### 代码提交前检查
+
+- [ ] 代码已格式化（`Ctrl + Alt + L`）
+- [ ] 导入已优化（`Ctrl + Alt + O`）
+- [ ] 没有编译错误
+- [ ] 通过基本测试
+- [ ] 提交信息符合 Conventional Commits
+- [ ] 没有硬编码的敏感信息
+- [ ] 添加了必要的注释
+- [ ] 更新了相关文档（如需要）
+
+### Pull Request 检查
+
+- [ ] 代码已通过所有 CI 检查
+- [ ] 添加了必要的测试
+- [ ] 更新了相关文档
+- [ ] 通过了代码审查
+- [ ] 合并没有冲突
+
+---
+
+## 附录：Cursor 配置示例
+
+### settings.json（推荐配置）
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "editor.tabSize": 4,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "java.implementationsCodeLens.enabled": true,
+  "java.referencesCodeLens.enabled": true,
+  "kotlin.codeStyle": "Official",
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
+```
+
+### .editorconfig（跨编辑器配置）
+```ini
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{java,kt}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+[*.{xml,gradle}]
+indent_style = space
+indent_size = 4
+```
+
+---
+
+## 特殊说明
+
+### 1. Cursor AI 模式选择
+- **Agent 模式**：用于复杂任务（重构、调试）
+- **Chat 模式**：用于简单询问和解释
+- **Inline 模式**：用于代码补全和快速修改
+
+### 2. 上下文管理
+- 充分利用 Cursor 的上下文窗口
+- 包含相关文件到上下文中
+- 避免上下文过长导致信息丢失
+
+### 3. 错误处理
+- 遇到错误时，详细解释错误原因
+- 提供多个解决方案供选择
+- 不确定时主动查询文档
+
+---
+
+> **注意**：本文件应与 `AGENTS.md` 配合使用。
+> 
+> **最后更新**：2026-05-20
+> **适用版本**：Cursor IDE 最新版
