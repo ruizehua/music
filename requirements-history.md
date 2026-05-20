@@ -21,6 +21,26 @@
 
 ## 变更历史记录
 
+### 2026-05-20 22:50:00 - 根据需求文档更新相关规范文档
+**变更人**: 系统
+**变更类型**: 修改
+**变更原因**: 根据新的需求规范更新相关技术文档
+**变更内容**: 
+- 更新 spec.md：添加详细的功能需求规格说明
+- 更新 design.md：根据新需求调整技术设计
+- 更新 api.md：添加新的 API 接口定义
+- 更新 data-model.md：添加新的数据模型
+- 更新 README.md：同步功能列表
+**影响范围**: 技术文档体系
+**相关文档**: 
+- [spec.md](.trae/specs/music-software-init/spec.md)
+- [design.md](design.md)
+- [api.md](api.md)
+- [data-model.md](data-model.md)
+- [README.md](README.md)
+
+---
+
 ### 2026-05-20 22:40:00 - 更新功能需求规范
 **变更人**: 系统
 **变更类型**: 修改

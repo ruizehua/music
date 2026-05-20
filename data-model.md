@@ -20,26 +20,36 @@
 ## 二、实体关系图
 
 ```
-┌─────────────────┐         ┌─────────────────┐
-│   music_files   │         │    playlists    │
-├─────────────────┤         ├─────────────────┤
-│ id (PK)         │         │ id (PK)         │
-│ file_name       │         │ name            │
-│ file_path       │         │ description     │
-│ file_size       │         │ created_at      │
-│ duration        │         │ updated_at      │
-│ format          │         └─────────────────┘
-│ created_at      │                 │
-│ updated_at      │                 │ 1:N
-└────────┬────────┘                 │
-         │                          ▼
-         │ N:M            ┌─────────────────────┐
-         └───────────────►│ playlist_music      │
-                          ├─────────────────────┤
-                          │ playlist_id (FK)    │
-                          │ music_id (FK)       │
-                          │ position            │
-                          └─────────────────────┘
+┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
+│   music_files   │         │    playlists    │         │   favorites     │
+├─────────────────┤         ├─────────────────┤         ├─────────────────┤
+│ id (PK)         │         │ id (PK)         │         │ id (PK)         │
+│ file_name       │         │ name            │         │ song_id (FK)    │
+│ file_path       │         │ description     │         │ created_at      │
+│ file_size       │         │ created_at      │         └────────┬────────┘
+│ duration        │         │ updated_at      │                  │
+│ format          │         └────────┬────────┘                  │
+│ artist          │                  │ 1:N                      │
+│ album           │                  ▼                          │
+│ title           │         ┌─────────────────────┐             │
+│ created_at      │         │  playlist_songs    │             │
+│ updated_at      │         ├─────────────────────┤             │
+└────────┬────────┘         │ playlist_id (FK)   │             │
+         │                  │ song_id (FK)       │             │
+         │ N:M              │ position           │             │
+         ├──────────────────┴─────────────────────┘             │
+         │                                                    │
+         └─────────────────────────────────────────────────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ play_history    │
+                  ├─────────────────┤
+                  │ id (PK)         │
+                  │ song_id (FK)    │
+                  │ play_time       │
+                  │ created_at      │
+                  └─────────────────┘
 ```
 
 ---
@@ -58,12 +68,17 @@
 | file_size | INTEGER | NOT NULL | 文件大小（字节） |
 | duration | INTEGER | NULL | 音乐时长（秒） |
 | format | TEXT | NOT NULL | 音频格式（mp3, wav, flac 等） |
+| artist | TEXT | NULL | 艺术家名称 |
+| album | TEXT | NULL | 专辑名称 |
+| title | TEXT | NULL | 歌曲标题 |
 | created_at | TEXT | NOT NULL | 创建时间（ISO 8601） |
 | updated_at | TEXT | NOT NULL | 更新时间（ISO 8601） |
 
 **索引**:
 - `idx_file_path` - 唯一索引，加速文件路径查询
 - `idx_created_at` - 普通索引，加速按时间排序查询
+- `idx_artist` - 普通索引，加速按艺术家查询
+- `idx_album` - 普通索引，加速按专辑查询
 
 ### 3.2 playlists 表
 
@@ -78,22 +93,56 @@
 | updated_at | TEXT | NOT NULL | 更新时间（ISO 8601） |
 
 **索引**:
-- `idx_name` - 普通索引，加速名称查询
+- `idx_playlist_name` - 普通索引，加速名称查询
 
-### 3.3 playlist_music 表
+### 3.3 playlist_songs 表
 
 **功能**: 播放列表与音乐的关联关系
 
 | 字段名 | 类型 | 约束 | 说明 |
 |--------|------|------|------|
 | playlist_id | INTEGER | NOT NULL, FOREIGN KEY | 播放列表 ID |
-| music_id | INTEGER | NOT NULL, FOREIGN KEY | 音乐 ID |
+| song_id | INTEGER | NOT NULL, FOREIGN KEY | 音乐 ID |
 | position | INTEGER | NOT NULL DEFAULT 0 | 在播放列表中的位置 |
 
 **约束**:
-- PRIMARY KEY (playlist_id, music_id) - 复合主键
-- FOREIGN KEY (playlist_id) REFERENCES playlists(id)
-- FOREIGN KEY (music_id) REFERENCES music_files(id)
+- PRIMARY KEY (playlist_id, song_id) - 复合主键
+- FOREIGN KEY (playlist_id) REFERENCES playlists(id) ON DELETE CASCADE
+- FOREIGN KEY (song_id) REFERENCES music_files(id) ON DELETE CASCADE
+
+### 3.4 favorites 表
+
+**功能**: 用户收藏的歌曲
+
+| 字段名 | 类型 | 约束 | 说明 |
+|--------|------|------|------|
+| id | INTEGER | PRIMARY KEY AUTOINCREMENT | 主键，自增 |
+| song_id | INTEGER | NOT NULL, FOREIGN KEY, UNIQUE | 音乐 ID |
+| created_at | TEXT | NOT NULL | 创建时间（ISO 8601） |
+
+**约束**:
+- FOREIGN KEY (song_id) REFERENCES music_files(id) ON DELETE CASCADE
+
+**索引**:
+- `idx_favorite_song_id` - 唯一索引，防止重复收藏
+
+### 3.5 play_history 表
+
+**功能**: 播放历史记录
+
+| 字段名 | 类型 | 约束 | 说明 |
+|--------|------|------|------|
+| id | INTEGER | PRIMARY KEY AUTOINCREMENT | 主键，自增 |
+| song_id | INTEGER | NOT NULL, FOREIGN KEY | 音乐 ID |
+| play_time | INTEGER | NOT NULL DEFAULT 0 | 播放时长（秒） |
+| created_at | TEXT | NOT NULL | 播放时间（ISO 8601） |
+
+**约束**:
+- FOREIGN KEY (song_id) REFERENCES music_files(id) ON DELETE CASCADE
+
+**索引**:
+- `idx_history_song_id` - 普通索引，加速查询
+- `idx_history_created_at` - 普通索引，按时间排序
 
 ---
 
@@ -109,6 +158,9 @@ public class MusicFile {
     private Long fileSize;
     private Integer duration;
     private String format;
+    private String artist;
+    private String album;
+    private String title;
     private String createdAt;
     private String updatedAt;
     // getters and setters
@@ -124,7 +176,41 @@ public class Playlist {
     private String description;
     private String createdAt;
     private String updatedAt;
-    private List<MusicFile> musicFiles;
+    private List<MusicFile> songs;
+    // getters and setters
+}
+```
+
+### 4.3 PlaylistSong 实体
+
+```java
+public class PlaylistSong {
+    private Long playlistId;
+    private Long songId;
+    private Integer position;
+    // getters and setters
+}
+```
+
+### 4.4 Favorite 实体
+
+```java
+public class Favorite {
+    private Long id;
+    private Long songId;
+    private String createdAt;
+    // getters and setters
+}
+```
+
+### 4.5 PlayHistory 实体
+
+```java
+public class PlayHistory {
+    private Long id;
+    private Long songId;
+    private Integer playTime;
+    private String createdAt;
     // getters and setters
 }
 ```
@@ -143,6 +229,9 @@ public class Playlist {
 | fileSize | Long | 文件大小 |
 | duration | Integer | 时长（秒） |
 | format | String | 格式 |
+| artist | String | 艺术家 |
+| album | String | 专辑 |
+| title | String | 歌曲标题 |
 | createdAt | String | 创建时间 |
 | updatedAt | String | 更新时间 |
 
@@ -153,8 +242,39 @@ public class Playlist {
 | id | Long | 播放列表 ID |
 | name | String | 名称 |
 | description | String | 描述 |
-| musicCount | Integer | 音乐数量 |
+| songCount | Integer | 歌曲数量 |
 | createdAt | String | 创建时间 |
+| updatedAt | String | 更新时间 |
+
+### 5.3 PlaylistDetailDTO
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| id | Long | 播放列表 ID |
+| name | String | 名称 |
+| description | String | 描述 |
+| songs | List\<MusicDTO\> | 歌曲列表 |
+| createdAt | String | 创建时间 |
+| updatedAt | String | 更新时间 |
+
+### 5.4 FavoriteDTO
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| id | Long | 收藏 ID |
+| songId | Long | 歌曲 ID |
+| song | MusicDTO | 歌曲信息 |
+| addedAt | String | 添加时间 |
+
+### 5.5 PlayHistoryDTO
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| id | Long | 历史记录 ID |
+| songId | Long | 歌曲 ID |
+| song | MusicDTO | 歌曲信息 |
+| playTime | Integer | 播放时长（秒） |
+| playedAt | String | 播放时间 |
 
 ---
 
@@ -169,6 +289,9 @@ public class Playlist {
 | fileSize | 非空，大于 0 |
 | duration | 可选，大于等于 0 |
 | format | 非空，允许值：mp3, wav, flac, aac, ogg |
+| artist | 可选，最大长度 255 |
+| album | 可选，最大长度 255 |
+| title | 可选，最大长度 255 |
 
 ### 6.2 播放列表校验
 
