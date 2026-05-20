@@ -21,6 +21,41 @@
 
 ## 变更历史记录
 
+### 2026-05-20 22:20:00 - 清理规范文档内容，各司其职
+**变更人**: 系统
+**变更类型**: 修改
+**变更原因**: 确保各个 md 文档内容分工明确，不重复
+**变更内容**: 
+- 清理 [AGENTS.md](AGENTS.md)：删除代码风格规范、提交信息规范、技术栈说明、项目结构、验收标准等内容
+- 确保 [AGENTS.md](AGENTS.md) 只保留：项目概述、AI 行为准则、禁止事项
+- 清理 [code-style.md](code-style.md)：删除 Git 提交规范相关内容（已在 contribution.md 中）
+- 代码风格规范在 [code-style.md](code-style.md) 中维护
+- 提交信息规范在 [contribution.md](contribution.md) 中维护
+- 技术栈和项目结构应在 README 或其他专门文档中维护
+**影响范围**: 规范文档体系
+**相关文档**: 
+- [AGENTS.md](AGENTS.md)
+- [code-style.md](code-style.md)
+- [contribution.md](contribution.md)
+
+---
+
+### 2026-05-20 22:10:00 - 更新需求变更历史规范
+**变更人**: 系统
+**变更类型**: 修改
+**变更原因**: 完善需求变更历史记录规范，确保所有修改都被记录
+**变更内容**: 
+- 在 [AGENTS.md](AGENTS.md) 中添加强制规则：所有修改必须先记录到 requirements-history.md
+- 时间格式必须包含时分秒：`[YYYY-MM-DD HH:mm:ss]`
+- 更新现有历史记录的时间格式，添加时分秒
+- 规范必须填写的字段：变更人、变更类型、变更原因、变更内容、影响范围、相关文档
+**影响范围**: 项目治理与规范体系
+**相关文档**: 
+- [AGENTS.md](AGENTS.md)
+- [requirements-history.md](requirements-history.md)
+
+---
+
 ### 2026-05-20 22:00:00 - 扩展代码风格规范文档
 **变更人**: 系统
 **变更类型**: 修改

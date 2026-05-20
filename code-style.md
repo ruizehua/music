@@ -413,43 +413,5 @@ suspend fun loadMusicList(refresh: Boolean = false): Result<List<Music>> {
 
 ---
 
-## 九、Git 提交规范
-
-### 9.1 提交信息格式
-
-```
-<type>(<scope>): <description>
-
-[optional body]
-
-[optional footer(s)]
-```
-
-### 9.2 Type 类型
-
-| Type | 说明 |
-|------|------|
-| feat | 新功能 |
-| fix | Bug 修复 |
-| docs | 文档更新 |
-| style | 代码格式 |
-| refactor | 重构 |
-| perf | 性能优化 |
-| test | 测试相关 |
-| chore | 构建/工具变更 |
-
-### 9.3 示例
-
-```
-feat(music): 添加音乐播放进度显示
-
-- 集成 MediaSession 显示播放进度
-- 添加进度拖动功能
-
-Closes #123
-```
-
----
-
 > **最后更新**：2026-05-20
 > **版本**：1.0.0
