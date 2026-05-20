@@ -229,6 +229,7 @@ docs(api): 更新音乐搜索接口文档
   1. 先更新 [requirements-history.md](requirements-history.md) 记录此次变更
   2. 同步更新相关的需求文档（如 [spec.md](.trae/specs/music-software-init/spec.md)）
   3. **然后才可以**继续生成代码实现功能
+- ❌ **不要**在提交后忘记推送到远程仓库！**每次 git commit 后必须立即执行 git push**，确保代码及时同步到 GitHub
 
 ### 2. 安全红线
 - ❌ **绝对禁止**在代码中硬编码密码、密钥
