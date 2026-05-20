@@ -1,0 +1,54 @@
+name: 自动提交需求规范文档
+
+on:
+  push:
+    paths:
+      - '需求规范.md'
+      - 'requirements.md'
+      - 'spec.md'
+  pull_request:
+    paths:
+      - '需求规范.md'
+      - 'requirements.md'
+      - 'spec.md'
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 设置 Git 用户信息
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: 检查是否有修改
+        id: check
+        run: |
+          git diff --name-only HEAD^ HEAD > changed_files.txt
+          if grep -E "(需求规范\.md|requirements\.md|spec\.md)" changed_files.txt; then
+            echo "::set-output name=has_changes::true"
+          else
+            echo "::set-output name=has_changes::false"
+          fi
+      
+      - name: 生成提交信息
+        if: steps.check.outputs.has_changes == 'true'
+        id: commit_msg
+        run: |
+          DATE=$(date +"%Y-%m-%d %H:%M:%S")
+          echo "::set-output name=message::docs: 更新需求规范文档 - $DATE"
+      
+      - name: 提交并推送
+        if: steps.check.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: false
