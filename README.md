@@ -28,7 +28,7 @@
 
 | 分类 | 技术 | 版本 |
 |------|------|------|
-| 语言 | Java | 17 |
+| 语言 | Java | 21 |
 | 框架 | Spring Boot | 3.2.x |
 | 数据库 | SQLite | 3.x |
 | ORM | Spring Data JPA | 3.2.x |
