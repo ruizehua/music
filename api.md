@@ -609,5 +609,120 @@ http://{server-ip}:8080/api/v1
 
 ---
 
+## 六、管理后台 API
+
+### 6.1 认证接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| POST | `/admin/auth/login` | 管理员登录 | 否 |
+| POST | `/admin/auth/logout` | 管理员登出 | 是 |
+| GET | `/admin/auth/info` | 获取当前用户信息 | 是 |
+
+### 6.2 音乐管理接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| GET | `/admin/music` | 获取音乐列表（分页） | 是 |
+| GET | `/admin/music/{id}` | 获取音乐详情 | 是 |
+| POST | `/admin/music` | 上传音乐文件 | 是 |
+| PUT | `/admin/music/{id}` | 更新音乐信息 | 是 |
+| DELETE | `/admin/music/{id}` | 删除音乐 | 是 |
+| DELETE | `/admin/music/batch` | 批量删除音乐 | 是 |
+
+### 6.3 歌单管理接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| GET | `/admin/playlists` | 获取歌单列表 | 是 |
+| GET | `/admin/playlists/{id}` | 获取歌单详情 | 是 |
+| POST | `/admin/playlists` | 创建歌单 | 是 |
+| PUT | `/admin/playlists/{id}` | 更新歌单 | 是 |
+| DELETE | `/admin/playlists/{id}` | 删除歌单 | 是 |
+| PUT | `/admin/playlists/{id}/songs` | 更新歌单歌曲（排序/添加/移除） | 是 |
+
+### 6.4 用户管理接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| GET | `/admin/users` | 获取用户列表 | 是 |
+| GET | `/admin/users/{id}` | 获取用户详情 | 是 |
+| POST | `/admin/users` | 创建用户 | 是 |
+| PUT | `/admin/users/{id}` | 更新用户信息 | 是 |
+| DELETE | `/admin/users/{id}` | 删除用户 | 是 |
+| PUT | `/admin/users/{id}/status` | 启用/禁用用户 | 是 |
+| PUT | `/admin/users/{id}/password` | 重置用户密码 | 是 |
+
+### 6.5 系统配置接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| GET | `/admin/config` | 获取系统配置 | 是 |
+| PUT | `/admin/config` | 更新系统配置 | 是 |
+| GET | `/admin/logs` | 获取系统日志 | 是 |
+
+### 6.6 数据统计接口
+
+| HTTP 方法 | 端点 | 描述 | 是否需要认证 |
+|-----------|------|------|--------------|
+| GET | `/admin/stats/overview` | 获取概览统计 | 是 |
+| GET | `/admin/stats/music` | 获取音乐统计 | 是 |
+| GET | `/admin/stats/users` | 获取用户统计 | 是 |
+| GET | `/admin/stats/storage` | 获取存储统计 | 是 |
+
+---
+
+## 七、管理后台接口详细说明
+
+### 7.1 POST /admin/auth/login - 管理员登录
+
+**请求体**:
+
+```json
+{
+  "username": "admin",
+  "password": "password123"
+}
+```
+
+**成功响应** (200 OK):
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "userInfo": {
+      "id": 1,
+      "username": "admin",
+      "nickname": "Administrator",
+      "role": "admin"
+    }
+  }
+}
+```
+
+### 7.2 GET /admin/stats/overview - 获取概览统计
+
+**成功响应** (200 OK):
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "totalMusic": 1000,
+    "totalUsers": 50,
+    "totalPlayCount": 10000,
+    "totalStorage": 50000000000,
+    "todayPlayCount": 100,
+    "todayNewUsers": 2
+  }
+}
+```
+
+---
+
 > **最后更新**：2026-05-20
 > **版本**：1.0.0

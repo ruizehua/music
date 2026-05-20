@@ -392,6 +392,17 @@ client/
 - Hilt（依赖注入）
 - Gradle 8.6
 
+### 管理后台技术栈
+
+- Vue 3.x
+- Vite 5.x
+- Element Plus 2.x
+- Vue Router 4.x
+- Pinia 2.x（状态管理）
+- Axios 1.x（HTTP 请求）
+- ECharts 5.x（数据可视化）
+- TypeScript 5.x
+
 ### API 设计
 
 **基础 URL**: `http://{server-ip}:8080/api/v1`

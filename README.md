@@ -10,6 +10,7 @@
 
 - **后端**: Java Spring Boot 3.x
 - **客户端**: Android Kotlin + Jetpack Compose
+- **管理后台**: Vue 3 + Element Plus
 - **数据库**: SQLite（仅存储文件路径和元数据）
 - **音乐存储**: 服务端本地文件系统
 
@@ -21,6 +22,8 @@
 - ✅ 音频缓存与离线播放（自动缓存、无网络播放）
 - ✅ 音乐库管理（歌曲列表、分类筛选、搜索、歌单管理、收藏功能）
 - ✅ 基础播放适配（音量调节、均衡器预设、蓝牙设备控制）
+- ✅ 管理后台 - 音乐文件管理（上传、编辑、删除、预览）
+- ✅ 管理后台 - 登录与权限（管理员登录、权限控制）
 
 ### P1 - 进阶常用功能
 - 🚧 歌词展示（逐行滚动、精准同步、桌面悬浮歌词）
@@ -28,6 +31,10 @@
 - 🚧 便捷操作能力（桌面小组件、全局搜索、歌曲信息编辑）
 - 🚧 视觉与个性化（专辑封面、深色/浅色模式、自定义主题色）
 - 🚧 跨端同步（歌单、收藏、播放进度、播放历史）
+- 🚧 管理后台 - 歌单管理（创建、编辑、删除、导出）
+- 🚧 管理后台 - 用户管理（创建、编辑、禁用、密码重置）
+- 🚧 管理后台 - 系统配置（存储配置、播放配置、安全配置）
+- 🚧 管理后台 - 数据统计（概览仪表盘、播放统计、用户统计）
 
 ### P2 - 锦上添花功能
 - ⏳ 播放数据统计（听歌时长、高频播放、月度/年度报告）
@@ -61,6 +68,18 @@
 | 状态管理 | ViewModel + StateFlow | 2.6.x |
 | 构建工具 | Gradle | 8.6 |
 
+### 管理后台技术栈
+
+| 分类 | 技术 | 版本 |
+|------|------|------|
+| 语言 | TypeScript | 5.x |
+| 框架 | Vue | 3.x |
+| 构建工具 | Vite | 5.x |
+| UI 组件库 | Element Plus | 2.x |
+| 状态管理 | Pinia | 2.x |
+| HTTP 请求 | Axios | 1.x |
+| 图表库 | ECharts | 5.x |
+
 ## 📁 项目结构
 
 ```
@@ -74,10 +93,21 @@ music/
 │   ├── app/                   # Android 应用
 │   ├── build.gradle.kts       # Gradle 配置
 │   └── settings.gradle.kts   # 设置文件
+├── admin-web/                 # Vue 管理后台
+│   ├── src/                   # Vue 源码
+│   │   ├── views/             # 页面组件
+│   │   ├── components/        # 公共组件
+│   │   ├── api/               # API 封装
+│   │   ├── store/             # 状态管理
+│   │   └── router/            # 路由配置
+│   ├── package.json           # npm 配置
+│   └── vite.config.ts         # Vite 配置
 ├── AGENTS.md                  # AI 行为规范
 ├── CLAUDE.md                  # Claude 专用规范
 ├── .cursorrules               # Cursor IDE 规则
 ├── README.md                  # 项目说明
+├── 需求规范.md                 # 需求规范
+├── requirements-history.md    # 需求变更历史
 ├── glossary.md                # 术语表
 ├── spec.md                    # 需求规格
 ├── non-functional.md          # 非功能需求
@@ -106,6 +136,16 @@ mvn spring-boot:run
 ### 客户端运行
 
 在 Android Studio 中打开 `client` 目录，配置运行即可。
+
+### 管理后台启动
+
+```bash
+cd admin-web
+pnpm install
+pnpm dev
+```
+
+管理后台将在 http://localhost:5173 启动。
 
 ## 📖 API 文档
 

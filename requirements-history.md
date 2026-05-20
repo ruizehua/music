@@ -21,6 +21,29 @@
 
 ## 变更历史记录
 
+### 2026-05-20 23:00:00 - 新增后端管理服务（Vue 前端）
+**变更人**: 系统
+**变更类型**: 新增
+**变更原因**: 添加后端管理服务，使用 Vue 框架开发管理页面，方便管理音乐库
+**变更内容**: 
+- 新增后端管理服务模块（admin-web）
+- 使用 Vue 3 + Vite + Element Plus 技术栈
+- 管理功能：音乐文件管理、歌单管理、用户管理、系统配置、数据统计
+- 更新 [需求规范.md](需求规范.md)：添加后端管理服务功能需求
+- 更新 [spec.md](.trae/specs/music-software-init/spec.md)：添加后端管理服务规格
+- 更新 [design.md](design.md)：添加技术设计
+- 更新 [api.md](api.md)：添加管理 API 接口
+- 更新 [README.md](README.md)：同步项目结构
+**影响范围**: 项目架构、前端技术栈
+**相关文档**: 
+- [需求规范.md](需求规范.md)
+- [spec.md](.trae/specs/music-software-init/spec.md)
+- [design.md](design.md)
+- [api.md](api.md)
+- [README.md](README.md)
+
+---
+
 ### 2026-05-20 22:50:00 - 根据需求文档更新相关规范文档
 **变更人**: 系统
 **变更类型**: 修改
