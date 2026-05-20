@@ -107,7 +107,7 @@ music/
 ├── .cursorrules               # Cursor IDE 规则
 ├── README.md                  # 项目说明
 ├── 需求规范.md                 # 需求规范
-├── requirements-history.md    # 需求变更历史
+├── changelog.md                 # 需求变更历史
 ├── glossary.md                # 术语表
 ├── spec.md                    # 需求规格
 ├── non-functional.md          # 非功能需求
@@ -156,11 +156,16 @@ pnpm dev
 | 文档 | 说明 |
 |------|------|
 | [AGENTS.md](AGENTS.md) | **AI 行为规范** - 必须遵守的核心规则 |
-| [requirements-history.md](requirements-history.md) | **需求变更历史记录** - 所有需求变更必须先在此记录 |
+| [changelog.md](changelog.md) | **需求变更历史记录** - 所有需求变更必须先在此记录 |
 | [glossary.md](glossary.md) | 术语表 |
 | [spec.md](.trae/specs/music-software-init/spec.md) | 需求规格 |
 | [non-functional.md](non-functional.md) | 非功能需求 |
 | [design.md](design.md) | 技术设计 |
+| [architecture.md](architecture.md) | 系统架构设计 |
+| [ui-ux.md](ui-ux.md) | UI/UX 设计规范 |
+| [decisions.md](decisions.md) | 技术决策记录 |
+| [test-plan.md](test-plan.md) | 测试策略与计划 |
+| [roadmap.md](roadmap.md) | 产品路线图 |
 | [api.md](api.md) | API 接口规范 |
 | [data-model.md](data-model.md) | 数据模型 |
 | [code-style.md](code-style.md) | 代码风格指南 |

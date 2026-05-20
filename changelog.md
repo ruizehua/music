@@ -21,6 +21,33 @@
 
 ## 变更历史记录
 
+### 2026-05-21 00:00:00 - 创建缺失规范文档并重命名文件
+**变更人**: 系统
+**变更类型**: 新增/修改
+**变更原因**: 根据文档分析结果，补充缺失的规范文档，完善项目文档体系
+**变更内容**: 
+- 重命名 `requirements-history.md` 为 `changelog.md`（作为版本变更日志）
+- 创建 [architecture.md](architecture.md)：系统架构详图（C4模型、架构图）
+- 创建 [ui-ux.md](ui-ux.md)：页面结构与交互设计
+- 创建 [decisions.md](decisions.md)：架构决策记录（ADR）
+- 创建 [test-plan.md](test-plan.md)：测试策略与计划
+- 创建 [roadmap.md](roadmap.md)：产品路线图
+- 更新 [tasks.md](.trae/specs/music-software-init/tasks.md)：添加管理后台开发任务
+- 更新 [checklist.md](.trae/specs/music-software-init/checklist.md)：添加管理后台检查项
+- 更新所有引用了 `requirements-history.md` 的文档
+**影响范围**: 项目文档体系
+**相关文档**: 
+- [规范md.md](规范md.md)
+- [architecture.md](architecture.md)
+- [ui-ux.md](ui-ux.md)
+- [decisions.md](decisions.md)
+- [test-plan.md](test-plan.md)
+- [roadmap.md](roadmap.md)
+- [tasks.md](.trae/specs/music-software-init/tasks.md)
+- [checklist.md](.trae/specs/music-software-init/checklist.md)
+
+---
+
 ### 2026-05-20 23:00:00 - 新增后端管理服务（Vue 前端）
 **变更人**: 系统
 **变更类型**: 新增

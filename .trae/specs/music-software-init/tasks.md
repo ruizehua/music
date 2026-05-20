@@ -48,6 +48,24 @@
 - [x] **Task 1.12**: 创建 security.md 安全策略
   - 认证授权、数据加密、漏洞防护
 
+- [x] **Task 1.13**: 创建 architecture.md 架构文档
+  - C4 模型图、系统架构图
+
+- [x] **Task 1.14**: 创建 ui-ux.md UI/UX 文档
+  - 页面结构、设计系统、交互规范
+
+- [x] **Task 1.15**: 创建 decisions.md 决策记录
+  - 技术决策记录
+
+- [x] **Task 1.16**: 创建 test-plan.md 测试计划
+  - 测试策略、测试类型
+
+- [x] **Task 1.17**: 创建 roadmap.md 产品路线图
+  - 版本计划、里程碑
+
+- [x] **Task 1.18**: 创建 changelog.md 变更日志
+  - 需求变更历史记录
+
 ---
 
 ## Phase 2: 服务端项目结构（Java Spring Boot）
@@ -80,24 +98,41 @@
 
 - [ ] **Task 3.1**: 创建数据模型
   - MusicFile 实体类
+  - Playlist 实体类
+  - PlaylistSong 实体类
+  - Favorite 实体类
+  - User 实体类
   - 数据库表结构映射
-  - 创建时间：预计 10 分钟
+  - 创建时间：预计 20 分钟
 
 - [ ] **Task 3.2**: 创建数据库访问层
   - MusicRepository 接口
+  - PlaylistRepository 接口
+  - FavoriteRepository 接口
+  - UserRepository 接口
   - SQLite 数据库初始化
-  - 创建时间：预计 15 分钟
+  - 创建时间：预计 20 分钟
 
 - [ ] **Task 3.3**: 创建业务逻辑层
   - MusicService 服务类
+  - PlaylistService 服务类
+  - FavoriteService 服务类
+  - AuthService 服务类
   - 文件上传逻辑
   - 元数据提取逻辑
-  - 创建时间：预计 20 分钟
+  - 创建时间：预计 40 分钟
 
 - [ ] **Task 3.4**: 创建 REST API 控制器
-  - MusicController
+  - MusicController (客户端 API)
+  - PlaylistController (客户端 API)
+  - FavoriteController (客户端 API)
+  - AdminAuthController (管理后台 API)
+  - AdminMusicController (管理后台 API)
+  - AdminPlaylistController (管理后台 API)
+  - AdminUserController (管理后台 API)
+  - AdminStatsController (管理后台 API)
   - 路由：GET /music, POST /music/upload, DELETE /music/{id}
-  - 创建时间：预计 15 分钟
+  - 创建时间：预计 45 分钟
 
 ---
 
@@ -125,7 +160,8 @@
 
 - [ ] **Task 5.1**: 创建数据模型
   - Music 数据类
-  - 创建时间：预计 5 分钟
+  - Playlist 数据类
+  - 创建时间：预计 10 分钟
 
 - [ ] **Task 5.2**: 创建网络层
   - Retrofit API 接口
@@ -134,40 +170,87 @@
 
 - [ ] **Task 5.3**: 创建数据仓库
   - MusicRepository 类
-  - 创建时间：预计 10 分钟
+  - PlaylistRepository 类
+  - 创建时间：预计 15 分钟
 
 - [ ] **Task 5.4**: 创建 ViewModel
   - MusicViewModel
-  - 创建时间：预计 10 分钟
+  - PlaylistViewModel
+  - PlayerViewModel
+  - 创建时间：预计 15 分钟
 
 - [ ] **Task 5.5**: 创建 UI 界面
+  - 首页
   - 音乐列表界面
   - 播放界面
-  - 创建时间：预计 20 分钟
+  - 歌单界面
+  - 收藏界面
+  - 设置界面
+  - 创建时间：预计 40 分钟
 
 - [ ] **Task 5.6**: 创建音乐播放服务
   - ExoPlayer 集成
   - 音乐播放器服务
-  - 创建时间：预计 20 分钟
+  - 后台播放
+  - 锁屏控件
+  - 创建时间：预计 30 分钟
 
 ---
 
-## Phase 6: 存储和资源目录
+## Phase 6: 管理后台项目（Vue 3）
 
-- [x] **Task 6.1**: 创建服务端音乐存储目录
+- [ ] **Task 6.1**: 创建管理后台项目结构
+  - 创建 admin-web/ 目录
+  - 创建 Vite + Vue 3 项目
+  - 创建时间：预计 15 分钟
+
+- [ ] **Task 6.2**: 配置依赖
+  - Vue 3
+  - Vue Router
+  - Pinia
+  - Element Plus
+  - Axios
+  - ECharts
+  - TypeScript
+  - 创建时间：预计 15 分钟
+
+- [ ] **Task 6.3**: 创建页面和组件
+  - 登录页
+  - 仪表盘
+  - 音乐管理页（列表、上传、编辑）
+  - 歌单管理页
+  - 用户管理页
+  - 系统配置页
+  - 日志查看页
+  - 创建时间：预计 60 分钟
+
+- [ ] **Task 6.4**: 创建 API 层
+  - API 封装
+  - Token 管理
+  - 创建时间：预计 15 分钟
+
+- [ ] **Task 6.5**: 创建状态管理
+  - Pinia stores
+  - 创建时间：预计 15 分钟
+
+---
+
+## Phase 7: 存储和资源目录
+
+- [x] **Task 7.1**: 创建服务端音乐存储目录
   - server/music-storage/songs/
   - server/music-storage/temp/
   - 创建时间：预计 2 分钟
 
-- [x] **Task 6.2**: 创建客户端资源目录
+- [x] **Task 7.2**: 创建客户端资源目录
   - drawable/, layout/, values/
   - 创建时间：预计 5 分钟
 
 ---
 
-## Phase 7: 文档和 README
+## Phase 8: 文档和 README
 
-- [x] **Task 7.1**: 创建 README.md
+- [x] **Task 8.1**: 创建 README.md
   - 项目说明
   - 环境要求
   - 构建说明
@@ -179,7 +262,7 @@
 ## Task Dependencies
 
 ```
-Phase 1 (Task 1.1-1.3)
+Phase 1 (Task 1.1-1.18)
     ↓
 Phase 2 (Task 2.1-2.4) 依赖于 Phase 1
     ↓
@@ -189,19 +272,21 @@ Phase 4 (Task 4.1-4.3) 依赖于 Phase 1
     ↓
 Phase 5 (Task 5.1-5.6) 依赖于 Phase 4
     ↓
-Phase 6 (Task 6.1-6.2) 依赖于 Phase 2, Phase 4
+Phase 6 (Task 6.1-6.5) 依赖于 Phase 1
     ↓
-Phase 7 (Task 7.1) 依赖于所有 Phase
+Phase 7 (Task 7.1-7.2) 依赖于 Phase 2, Phase 4
+    ↓
+Phase 8 (Task 8.1) 依赖于所有 Phase
 ```
 
 ---
 
 ## Summary
 
-- **总任务数**: 24
-- **预计总时间**: 约 3-4 小时
-- **关键路径**: Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
-- **并行化可能性**: Phase 2 和 Phase 4 可以并行进行（服务端和客户端分离）
+- **总任务数**: 40+
+- **预计总时间**: 约 8-10 小时
+- **关键路径**: Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 / Phase 6
+- **并行化可能性**: Phase 3 (服务端)、Phase 5 (Android)、Phase 6 (管理后台) 可以并行进行
 
 ---
 
@@ -209,5 +294,6 @@ Phase 7 (Task 7.1) 依赖于所有 Phase
 
 完成本任务后，将进入实际的代码实现阶段。按照 Phase 顺序逐步实现：
 1. 首先完成 Phase 1-3（服务端）
-2. 然后完成 Phase 4-5（客户端）
+2. 同时可以并行进行 Phase 4-5（Android 客户端）和 Phase 6（管理后台）
 3. 最后进行测试和文档完善
+
