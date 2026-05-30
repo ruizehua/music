@@ -37,7 +37,14 @@ export const useUserStore = defineStore('user', () => {
   async function login(username: string, password: string) {
     const res = await authApi.login({ username, password })
     setToken(res.data.token)
-    setUser(res.data.user)
+    const userInfo = res.data.userInfo || res.data.user
+    setUser({
+      id: 0,
+      username: userInfo.username || '',
+      nickname: userInfo.username || '',
+      avatar: '',
+      role: userInfo.role || ''
+    })
     return res
   }
 

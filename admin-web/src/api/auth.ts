@@ -3,18 +3,18 @@ import type { LoginRequest, LoginResponse, User } from '@/types'
 
 export const authApi = {
   login(data: LoginRequest) {
-    return request.post<LoginResponse>('/auth/login', data)
+    return request.post<LoginResponse>('/admin/auth/login', data)
   },
 
   logout() {
-    return request.post<void>('/auth/logout')
+    return request.post<void>('/admin/auth/logout')
   },
 
   getCurrentUser() {
-    return request.get<User>('/auth/me')
+    return request.get<User>('/admin/auth/info')
   },
 
   refreshToken() {
-    return request.post<{ token: string }>('/auth/refresh')
+    return request.post<{ token: string }>('/admin/auth/refresh')
   }
 }

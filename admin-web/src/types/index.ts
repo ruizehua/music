@@ -11,6 +11,10 @@ export interface LoginRequest {
 
 export interface LoginResponse {
   token: string
+  userInfo: {
+    username: string
+    role: string
+  }
   user: User
 }
 

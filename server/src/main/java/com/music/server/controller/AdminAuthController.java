@@ -60,15 +60,20 @@ public class AdminAuthController {
         if (token == null || token.isEmpty()) {
             return ApiResponse.error(401, "未登录");
         }
-        
-        if (!adminAuthService.validateToken(token)) {
+
+        String actualToken = token;
+        if (token.startsWith("Bearer ")) {
+            actualToken = token.substring(7);
+        }
+
+        if (!adminAuthService.validateToken(actualToken)) {
             return ApiResponse.error(401, "Token无效或已过期");
         }
-        
+
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("username", adminUsername);
         userInfo.put("role", "admin");
-        
+
         return ApiResponse.success(userInfo);
     }
 }
