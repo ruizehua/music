@@ -1,0 +1,4 @@
+- [x] ic_launcher_foreground.xml 存在且包含音乐符号矢量路径
+- [x] ic_launcher.xml 前景层引用 @drawable/ic_launcher_foreground
+- [x] ic_launcher_round.xml 前景层引用 @drawable/ic_launcher_foreground
+- [x] 构建通过（assembleDebug 无错误）
