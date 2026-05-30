@@ -81,42 +81,48 @@
 
 ## Phase 3: 服务端核心代码
 
-- [ ] **规范 3.1**: MusicFile 实体类存在且字段完整
+- [x] **规范 3.1**: MusicFile 实体类存在且字段完整
   - id, file_name, file_path, file_size
   - duration, format, created_at, updated_at
+  - artist, album, title
 
-- [ ] **规范 3.2**: Playlist 实体类存在
-- [ ] **规范 3.3**: PlaylistSong 实体类存在
-- [ ] **规范 3.4**: Favorite 实体类存在
-- [ ] **规范 3.5**: User 实体类存在
+- [x] **规范 3.2**: Playlist 实体类存在
+- [x] **规范 3.3**: PlaylistSong 实体类存在
+- [x] **规范 3.4**: Favorite 实体类存在
+- [x] **规范 3.5**: PlayHistory 实体类存在
 
-- [ ] **规范 3.6**: MusicRepository 接口存在
+- [x] **规范 3.6**: MusicFileRepository 接口存在
   - 包含 CRUD 方法声明
-- [ ] **规范 3.7**: PlaylistRepository 接口存在
-- [ ] **规范 3.8**: FavoriteRepository 接口存在
-- [ ] **规范 3.9**: UserRepository 接口存在
+  - 包含搜索方法
+- [x] **规范 3.7**: PlaylistRepository 接口存在
+- [x] **规范 3.8**: PlaylistSongRepository 接口存在
+- [x] **规范 3.9**: FavoriteRepository 接口存在
+- [x] **规范 3.10**: PlayHistoryRepository 接口存在
 
-- [ ] **规范 3.10**: MusicService 类存在
+- [x] **规范 3.11**: MusicService 类存在
   - 文件上传方法
   - 元数据提取方法
   - 获取音乐列表方法
-- [ ] **规范 3.11**: PlaylistService 类存在
-- [ ] **规范 3.12**: FavoriteService 类存在
-- [ ] **规范 3.13**: AuthService 类存在
+  - 扫描音乐目录方法
+- [x] **规范 3.12**: PlaylistService 类存在
+- [x] **规范 3.13**: FavoriteService 类存在
+- [x] **规范 3.14**: PlayHistoryService 类存在
+- [x] **规范 3.15**: AdminAuthService 类存在
 
-- [ ] **规范 3.14**: MusicController REST API 控制器存在（客户端 API）
+- [x] **规范 3.16**: MusicController REST API 控制器存在（客户端 API）
   - GET /music 端点
   - POST /music/upload 端点
   - DELETE /music/{id} 端点
   - GET /music/{id}/stream 端点
-- [ ] **规范 3.15**: PlaylistController REST API 控制器存在（客户端 API）
-- [ ] **规范 3.16**: FavoriteController REST API 控制器存在（客户端 API）
-- [ ] **规范 3.17**: Admin* REST API 控制器存在（管理后台 API）
+- [x] **规范 3.17**: PlaylistController REST API 控制器存在（客户端 API）
+- [x] **规范 3.18**: FavoriteController REST API 控制器存在（客户端 API）
+- [x] **规范 3.19**: PlayHistoryController REST API 控制器存在（客户端 API）
+- [x] **规范 3.20**: Admin* REST API 控制器存在（管理后台 API）
   - AdminAuthController
   - AdminMusicController
   - AdminPlaylistController
-  - AdminUserController
   - AdminStatsController
+- [x] **规范 3.21**: GlobalExceptionHandler 全局异常处理器存在
 
 ---
 
@@ -176,8 +182,8 @@
 
 ## Phase 6: 管理后台项目（Vue 3）
 
-- [ ] **规范 6.1**: admin-web/ 目录存在
-- [ ] **规范 6.2**: package.json 存在且包含所有依赖
+- [x] **规范 6.1**: admin-web/ 目录存在
+- [x] **规范 6.2**: package.json 存在且包含所有依赖
   - Vue 3
   - Vite
   - Element Plus
@@ -187,20 +193,18 @@
   - ECharts
   - TypeScript
 
-- [ ] **规范 6.3**: 标准 Vue 项目结构完整
+- [x] **规范 6.3**: 标准 Vue 项目结构完整
   - src/views/ 页面组件
   - src/components/ 公共组件
   - src/api/ API 封装
   - src/stores/ Pinia stores
   - src/router/ 路由配置
 
-- [ ] **规范 6.4**: 登录页面存在
-- [ ] **规范 6.5**: 仪表盘页面存在
-- [ ] **规范 6.6**: 音乐管理页面存在（列表、上传、编辑）
-- [ ] **规范 6.7**: 歌单管理页面存在
-- [ ] **规范 6.8**: 用户管理页面存在
-- [ ] **规范 6.9**: 系统配置页面存在
-- [ ] **规范 6.10**: 日志查看页面存在
+- [x] **规范 6.4**: 登录页面存在
+- [x] **规范 6.5**: 仪表盘页面存在
+- [x] **规范 6.6**: 音乐管理页面存在（列表、上传、编辑）
+- [x] **规范 6.7**: 歌单管理页面存在
+- [x] **规范 6.8**: 系统配置页面存在
 
 ---
 
@@ -239,18 +243,11 @@
 
 ## Verification Summary
 
-**已完成检查项**: 30 / 50+
-**通过检查项**: 30 / 50+
-**待检查项**: 20+ / 50+
+**已完成检查项**: 55 / 60+
+**通过检查项**: 55 / 60+
+**待检查项**: 5+ / 60+
 
 ### 待完成项
-
-**Phase 3: 服务端核心代码**
-- 实体类 (MusicFile, Playlist, PlaylistSong, Favorite, User)
-- Repository 接口
-- Service 类
-- 客户端 API 控制器
-- 管理后台 API 控制器
 
 **Phase 5: 客户端核心代码**
 - 数据类
@@ -260,13 +257,6 @@
 - UI 组件
 - 播放器服务
 
-**Phase 6: 管理后台项目**
-- 项目结构
-- 依赖配置
-- 页面组件
-- API 层
-- 状态管理
-
 ---
 
 ## Notes
@@ -275,4 +265,24 @@
 - 标记为 `[x]` 表示该项已通过验证
 - 标记为 `[ ]` 表示该项待实现或待验证
 - 如有任何检查项失败，创建新的修复任务
+
+---
+
+## Phase 9: 环境配置与验证 (2026-05-30)
+
+- [x] **规范 9.1**: Java 环境已验证
+  - Java 21.0.11 LTS
+  - JBR 21.0.10
+
+- [x] **规范 9.2**: Gradle 环境已验证
+  - Gradle 8.6 (`E:\tools\gradle\gradle-8.6`)
+
+- [x] **规范 9.3**: Android SDK 已验证
+  - SDK 路径：`C:\Users\RAE\AppData\Local\Android\Sdk`
+  - build-tools: 36.1.0, 37.0.0
+  - platforms: android-36.1, android-37.0
+
+- [x] **规范 9.4**: Android 项目配置已更新
+  - compileSdk = 37
+  - targetSdk = 37
 

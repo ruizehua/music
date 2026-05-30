@@ -21,6 +21,27 @@
 
 ## 变更历史记录
 
+### 2026-05-23 10:00:00 - 实现服务端核心代码和管理后台
+**变更人**: 系统
+**变更类型**: 新增
+**变更原因**: 根据需求规范完成服务端核心代码和管理后台的实现
+**变更内容**: 
+- 更新服务端配置：音乐文件路径设置为 `F:\音乐文件`
+- 实现数据模型层：MusicFile、Playlist、PlaylistSong、Favorite、PlayHistory 实体类
+- 实现数据库访问层：Repository 接口
+- 实现业务逻辑层：Service 类（音乐扫描、播放列表、收藏、历史记录）
+- 实现 REST API 控制器：客户端 API 和管理后台 API
+- 实现管理后台：Vue 3 + Vite + Element Plus + TypeScript
+- 支持自动扫描本地音乐文件目录（多层目录结构）
+**影响范围**: 服务端代码、管理后台代码
+**相关文档**: 
+- [spec.md](.trae/specs/music-software-init/spec.md)
+- [tasks.md](.trae/specs/music-software-init/tasks.md)
+- [api.md](api.md)
+- [data-model.md](data-model.md)
+
+---
+
 ### 2026-05-21 00:00:00 - 创建缺失规范文档并重命名文件
 **变更人**: 系统
 **变更类型**: 新增/修改

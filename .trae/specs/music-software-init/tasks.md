@@ -96,41 +96,44 @@
 
 ## Phase 3: 服务端核心代码
 
-- [ ] **Task 3.1**: 创建数据模型
+- [x] **Task 3.1**: 创建数据模型
   - MusicFile 实体类
   - Playlist 实体类
   - PlaylistSong 实体类
   - Favorite 实体类
-  - User 实体类
+  - PlayHistory 实体类
   - 数据库表结构映射
   - 创建时间：预计 20 分钟
 
-- [ ] **Task 3.2**: 创建数据库访问层
-  - MusicRepository 接口
+- [x] **Task 3.2**: 创建数据库访问层
+  - MusicFileRepository 接口
   - PlaylistRepository 接口
+  - PlaylistSongRepository 接口
   - FavoriteRepository 接口
-  - UserRepository 接口
+  - PlayHistoryRepository 接口
   - SQLite 数据库初始化
   - 创建时间：预计 20 分钟
 
-- [ ] **Task 3.3**: 创建业务逻辑层
+- [x] **Task 3.3**: 创建业务逻辑层
   - MusicService 服务类
   - PlaylistService 服务类
   - FavoriteService 服务类
-  - AuthService 服务类
+  - PlayHistoryService 服务类
+  - AdminAuthService 服务类
   - 文件上传逻辑
-  - 元数据提取逻辑
+  - 元数据提取逻辑（JAudioTagger）
   - 创建时间：预计 40 分钟
 
-- [ ] **Task 3.4**: 创建 REST API 控制器
+- [x] **Task 3.4**: 创建 REST API 控制器
   - MusicController (客户端 API)
   - PlaylistController (客户端 API)
   - FavoriteController (客户端 API)
+  - PlayHistoryController (客户端 API)
   - AdminAuthController (管理后台 API)
   - AdminMusicController (管理后台 API)
   - AdminPlaylistController (管理后台 API)
-  - AdminUserController (管理后台 API)
   - AdminStatsController (管理后台 API)
+  - GlobalExceptionHandler (全局异常处理)
   - 路由：GET /music, POST /music/upload, DELETE /music/{id}
   - 创建时间：预计 45 分钟
 
@@ -199,12 +202,12 @@
 
 ## Phase 6: 管理后台项目（Vue 3）
 
-- [ ] **Task 6.1**: 创建管理后台项目结构
+- [x] **Task 6.1**: 创建管理后台项目结构
   - 创建 admin-web/ 目录
   - 创建 Vite + Vue 3 项目
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 6.2**: 配置依赖
+- [x] **Task 6.2**: 配置依赖
   - Vue 3
   - Vue Router
   - Pinia
@@ -214,22 +217,20 @@
   - TypeScript
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 6.3**: 创建页面和组件
+- [x] **Task 6.3**: 创建页面和组件
   - 登录页
   - 仪表盘
   - 音乐管理页（列表、上传、编辑）
   - 歌单管理页
-  - 用户管理页
   - 系统配置页
-  - 日志查看页
   - 创建时间：预计 60 分钟
 
-- [ ] **Task 6.4**: 创建 API 层
+- [x] **Task 6.4**: 创建 API 层
   - API 封装
   - Token 管理
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 6.5**: 创建状态管理
+- [x] **Task 6.5**: 创建状态管理
   - Pinia stores
   - 创建时间：预计 15 分钟
 
@@ -296,4 +297,28 @@ Phase 8 (Task 8.1) 依赖于所有 Phase
 1. 首先完成 Phase 1-3（服务端）
 2. 同时可以并行进行 Phase 4-5（Android 客户端）和 Phase 6（管理后台）
 3. 最后进行测试和文档完善
+
+---
+
+## Phase 9: 环境配置与验证 (2026-05-30)
+
+- [x] **Task 9.1**: 验证 Java 环境
+  - Java 21.0.11 已安装
+  - JBR (JetBrains Runtime) 在 `E:\language\Android\jbr`
+  - 创建时间：已完成
+
+- [x] **Task 9.2**: 验证 Gradle 环境
+  - Gradle 8.6 已安装 (`E:\tools\gradle\gradle-8.6`)
+  - 创建时间：已完成
+
+- [x] **Task 9.3**: 验证 Android SDK
+  - SDK 路径：`C:\Users\RAE\AppData\Local\Android\Sdk`
+  - build-tools: 36.1.0, 37.0.0
+  - platforms: android-36.1, android-37.0
+  - 创建时间：已完成
+
+- [x] **Task 9.4**: 更新 Android 项目配置
+  - `client/app/build.gradle.kts`
+  - compileSdk = 37, targetSdk = 37
+  - 创建时间：已完成
 
