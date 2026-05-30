@@ -161,28 +161,28 @@
 
 ## Phase 5: 客户端核心代码
 
-- [ ] **Task 5.1**: 创建数据模型
+- [x] **Task 5.1**: 创建数据模型
   - Music 数据类
   - Playlist 数据类
   - 创建时间：预计 10 分钟
 
-- [ ] **Task 5.2**: 创建网络层
+- [x] **Task 5.2**: 创建网络层
   - Retrofit API 接口
   - 网络客户端配置
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 5.3**: 创建数据仓库
+- [x] **Task 5.3**: 创建数据仓库
   - MusicRepository 类
   - PlaylistRepository 类
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 5.4**: 创建 ViewModel
+- [x] **Task 5.4**: 创建 ViewModel
   - MusicViewModel
   - PlaylistViewModel
   - PlayerViewModel
   - 创建时间：预计 15 分钟
 
-- [ ] **Task 5.5**: 创建 UI 界面
+- [x] **Task 5.5**: 创建 UI 界面
   - 首页
   - 音乐列表界面
   - 播放界面
@@ -191,7 +191,7 @@
   - 设置界面
   - 创建时间：预计 40 分钟
 
-- [ ] **Task 5.6**: 创建音乐播放服务
+- [x] **Task 5.6**: 创建音乐播放服务
   - ExoPlayer 集成
   - 音乐播放器服务
   - 后台播放
