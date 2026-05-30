@@ -21,6 +21,51 @@
 
 ## 变更历史记录
 
+### 2026-05-30 23:17:00 - 实现 Android 客户端核心代码（Phase 5）并修复构建问题
+**变更人**: AI 助手
+**变更类型**: 新增/修改
+**变更原因**: 完成 Android 客户端核心代码实现，修复构建过程中的依赖和配置问题
+**变更内容**:
+- 创建数据模型层：Music, Playlist, PlaylistDetail, Favorite, PlayHistory, ApiResponse, PagedResult, PlayMode, PlaybackState
+- 创建网络层：MusicApi, PlaylistApi, FavoriteApi, PlayHistoryApi 接口 + Hilt NetworkModule
+- 创建数据仓库层：MusicRepository, PlaylistRepository, FavoriteRepository, PlayHistoryRepository
+- 创建 ViewModel 层：MusicViewModel, PlaylistViewModel, PlayerViewModel, FavoriteViewModel, HistoryViewModel
+- 创建 UI 界面：HomeScreen, LibraryScreen, PlayerScreen, PlaylistsScreen, PlaylistDetailScreen, FavoritesScreen, HistoryScreen, SettingsScreen
+- 创建播放服务：MusicPlayerManager（ExoPlayer 封装）, PlayerService（前台服务）
+- 创建导航系统：Screen 路由定义, MusicNavGraph 导航图, 底部导航栏
+- 更新 MainActivity：集成底部导航和 NavHost
+- 更新 AndroidManifest.xml：注册 PlayerService、声明权限（INTERNET, FOREGROUND_SERVICE, WAKE_LOCK）
+- 创建 Android 资源文件：strings.xml, themes.xml, colors.xml, ic_launcher
+- 修复构建问题：AGP 8.2.0→8.4.0、compileSdk 37→34、添加 material-icons-extended 和 hilt-navigation-compose 依赖
+- 修复 MusicApi.kt 中 MultipartBody import 错误
+- 配置 Gradle Wrapper（腾讯镜像加速）
+- 修复全局 init.gradle 中 Bstek 仓库 502 错误，替换为阿里云 Google 镜像
+- 更新 settings.gradle.kts 仓库模式为 PREFER_PROJECT
+- 构建验证通过：assembleDebug 成功生成 APK（19.8 MB）
+- 在 Android 模拟器（Pixel_10）上安装并运行成功
+**影响范围**: Android 客户端全部代码、构建配置、Gradle 全局配置
+**相关文档**:
+- [spec.md](.trae/specs/music-software-init/spec.md)
+- [tasks.md](.trae/specs/music-software-init/tasks.md)
+- [checklist.md](.trae/specs/music-software-init/checklist.md)
+
+---
+
+### 2026-05-30 23:17:00 - 强化 AI 行为规范：强制更新变更历史与提交代码
+**变更人**: 用户
+**变更类型**: 修改
+**变更原因**: 强化项目管理规范，确保每次修改都有据可查，代码及时同步
+**变更内容**:
+- 在 AGENTS.md 中新增强制规则：每次修改必须更新 changelog.md，时间使用当前北京时间
+- 在 AGENTS.md 中新增强制规则：每次任务完成后必须提交代码到 Git 并推送
+- 将这两条规则从"禁止事项"提升为"任务执行原则"中的核心流程步骤
+**影响范围**: AI 行为规范、项目治理流程
+**相关文档**:
+- [AGENTS.md](AGENTS.md)
+- [changelog.md](changelog.md)
+
+---
+
 ### 2026-05-30 10:00:00 - 更新 Android SDK 配置与环境验证
 **变更人**: 系统
 **变更类型**: 修改
