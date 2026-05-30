@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -40,13 +43,16 @@ public class AdminStatsController {
         
         long totalMusic = musicFileRepository.count();
         overview.put("totalMusic", totalMusic);
-        
-        long totalPlayCount = playHistoryRepository.count();
-        overview.put("totalPlayCount", totalPlayCount);
-        
+
+        long totalPlaylist = playlistRepository.count();
+        overview.put("totalPlaylist", totalPlaylist);
+
+        overview.put("totalUser", 1L);
+
         long totalStorage = calculateTotalStorage();
         overview.put("totalStorage", totalStorage);
-        
+        overview.put("storageUsed", totalStorage);
+
         long todayPlayCount = calculateTodayPlayCount();
         overview.put("todayPlayCount", todayPlayCount);
         
@@ -73,6 +79,25 @@ public class AdminStatsController {
         storageStats.put("availableSpaceFormatted", formatFileSize(availableSpace));
         
         return ApiResponse.success(storageStats);
+    }
+
+    @GetMapping("/play-trend")
+    public ApiResponse<List<Map<String, Object>>> getPlayTrend(@RequestParam(defaultValue = "7") int days) {
+        List<Map<String, Object>> trend = new ArrayList<>();
+        for (int i = days - 1; i >= 0; i--) {
+            Map<String, Object> dayData = new HashMap<>();
+            LocalDate date = LocalDate.now().minusDays(i);
+            dayData.put("date", date.toString());
+            dayData.put("count", 0);
+            trend.add(dayData);
+        }
+        return ApiResponse.success(trend);
+    }
+
+    @GetMapping("/popular-music")
+    public ApiResponse<List<Map<String, Object>>> getPopularMusic(@RequestParam(defaultValue = "10") int limit) {
+        List<Map<String, Object>> popular = new ArrayList<>();
+        return ApiResponse.success(popular);
     }
 
     private long calculateTotalStorage() {

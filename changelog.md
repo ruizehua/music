@@ -21,6 +21,40 @@
 
 ## 变更历史记录
 
+### 2026-05-30 23:55:00 - 补充管理后台缺失的 API 端点
+**变更人**: AI 助手
+**变更类型**: 新增/修改
+**变更原因**: 前端管理后台调用的部分 API 端点在后端不存在，导致请求 404；同时 overview 端点返回字段与前端不匹配
+**变更内容**:
+- 修改 AdminStatsController.java：overview 端点新增 `totalPlaylist`、`totalUser`、`storageUsed` 字段，移除不匹配的 `totalPlayCount` 字段
+- 修改 AdminStatsController.java：新增 `GET /api/v1/admin/stats/play-trend` 端点（播放趋势数据）
+- 修改 AdminStatsController.java：新增 `GET /api/v1/admin/stats/popular-music` 端点（热门音乐排行）
+- 新建 AdminConfigController.java：新增 `GET /api/v1/admin/config` 端点（系统配置列表）
+- 新建 AdminConfigController.java：新增 `GET /api/v1/admin/config/{key}` 端点（按 key 查询配置）
+- 新建 AdminConfigController.java：新增 `PUT /api/v1/admin/config` 端点（更新系统配置）
+**影响范围**: 管理后台统计页面、系统配置页面
+**相关文档**:
+- [AdminStatsController.java](server/src/main/java/com/music/server/controller/AdminStatsController.java)
+- [AdminConfigController.java](server/src/main/java/com/music/server/controller/AdminConfigController.java)
+
+---
+
+### 2026-05-30 23:50:00 - 修复管理后台登录 500 错误
+**变更人**: AI 助手
+**变更类型**: 修改
+**变更原因**: 前端 API 路径与后端不匹配，导致登录请求返回 500 错误
+**变更内容**:
+- 修复前端 auth.ts API 路径：`/auth/login` → `/admin/auth/login`，`/auth/logout` → `/admin/auth/logout`，`/auth/me` → `/admin/auth/info`
+- 修复前端 user.ts 登录响应字段解析：后端返回 `userInfo` 而非 `user`
+- 修复后端 AdminAuthController：Token 验证时去除 `Bearer ` 前缀
+- 更新 LoginResponse 类型定义，添加 `userInfo` 字段
+**影响范围**: 管理后台登录功能、后端认证接口
+**相关文档**:
+- [auth.ts](admin-web/src/api/auth.ts)
+- [AdminAuthController.java](server/src/main/java/com/music/server/controller/AdminAuthController.java)
+
+---
+
 ### 2026-05-30 23:45:00 - 替换启动器图标为耳机设计
 **变更人**: 用户 + AI 助手
 **变更类型**: 修改
