@@ -21,6 +21,34 @@
 
 ## 变更历史记录
 
+### 2026-05-30 23:45:00 - 替换启动器图标为耳机设计
+**变更人**: 用户 + AI 助手
+**变更类型**: 修改
+**变更原因**: 用户提供了新的耳机 SVG 图标，替换原有的音符图标
+**变更内容**:
+- 更新 `ic_launcher_foreground.xml`：从音符图案改为白色耳机图案（来自用户提供的 SVG）
+- 更新 `ic_launcher.xml` 和 `ic_launcher_round.xml`：背景色从 `#1DB954`（绿色）改为 `#FF4C5E`（红色）
+- 新增 `colors.xml` 中 `launcher_background` 颜色定义
+**影响范围**: Android 客户端桌面图标
+**相关文档**:
+- [update-launcher-icon spec](.trae/specs/update-launcher-icon/spec.md)
+
+---
+
+### 2026-05-30 23:30:00 - 更新 Android 启动器图标
+**变更人**: AI 助手
+**变更类型**: 新增/修改
+**变更原因**: 为音乐应用创建自适应图标的前景层，替换原来纯色占位图标
+**变更内容**:
+- 创建 ic_launcher_foreground.xml：白色八分音符（♪）矢量图标，108dp 画布，内容在安全区（72dp）内
+- 更新 ic_launcher.xml：前景层从 @color/primary 改为 @drawable/ic_launcher_foreground
+- 更新 ic_launcher_round.xml：前景层从 @color/primary 改为 @drawable/ic_launcher_foreground
+**影响范围**: Android 客户端启动器图标
+**相关文档**:
+- [spec.md](.trae/specs/music-software-init/spec.md)
+
+---
+
 ### 2026-05-30 23:17:00 - 实现 Android 客户端核心代码（Phase 5）并修复构建问题
 **变更人**: AI 助手
 **变更类型**: 新增/修改
